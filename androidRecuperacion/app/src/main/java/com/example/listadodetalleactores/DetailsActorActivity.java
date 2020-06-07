@@ -2,20 +2,24 @@ package com.example.listadodetalleactores;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.listadodetalleactores.models.DetailsActor;
+
 public class DetailsActorActivity extends AppCompatActivity {
 
     TextView nombre, cumpleanos, biografia;
     ImageView ivActor;
+    ActoresDetailsViewModel actoresDetailsViewModel;
+    int idActor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +31,14 @@ public class DetailsActorActivity extends AppCompatActivity {
         cumpleanos = findViewById(R.id.TvCumpleaños);
         biografia = findViewById(R.id.TvBiografia);
         ivActor = findViewById(R.id.IvActor);
+
+        actoresDetailsViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) actoresDetailsViewModel).get(ActoresDetailsViewModel.class);
+
+        actoresDetailsViewModel.getActor(idActor).observe(this, new Observer<DetailsActor>() {
+            @Override
+            public void onChanged(DetailsActor detailsActor) {
+
+            }
+        });
     }
 }

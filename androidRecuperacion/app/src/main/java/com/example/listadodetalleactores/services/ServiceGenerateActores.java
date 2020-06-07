@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerateActores {
 
-    private static final String BASE_URL = "https://api.themoviedb.org/3/";
+    private static String BASE_URL = "https://api.themoviedb.org/3/";
 
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
