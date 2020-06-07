@@ -15,9 +15,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerateActores {
 
+    private static final String BASE_URL = "https://api.themoviedb.org/3/";
+
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
-                    .baseUrl("https://api.themoviedb.org/3/")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create());
 
     private static Retrofit retrofit = null;
@@ -40,7 +42,6 @@ public class ServiceGenerateActores {
                             .addQueryParameter("language","es-ES")
                             .build();
 
-                    // Request customization: add request headers
                     Request.Builder requestBuilder = original.newBuilder()
                             .url(url);
 

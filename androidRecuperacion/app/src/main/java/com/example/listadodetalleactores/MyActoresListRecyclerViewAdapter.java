@@ -18,10 +18,12 @@ public class MyActoresListRecyclerViewAdapter extends RecyclerView.Adapter<MyAct
 
     private Context ctx;
     private List<Actores> actores;
+    private IActoresListener actoresListener;
 
-    public MyActoresListRecyclerViewAdapter(List<Actores> actoresDetails, Context ctx) {
+    public MyActoresListRecyclerViewAdapter(List<Actores> actoresDetails, Context ctx, IActoresListener actoresListener) {
         this.actores = actoresDetails;
         this.ctx = ctx;
+        this.actoresListener = actoresListener;
     }
 
     @Override
@@ -40,6 +42,12 @@ public class MyActoresListRecyclerViewAdapter extends RecyclerView.Adapter<MyAct
         Glide.with(ctx)
                 .load("https://image.tmdb.org/t/p/w500" + holder.mItem.getProfilePath())
                 .into(holder.imagenActor);
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actoresListener.onClickActor(holder.mItem);
+            }
+        });
     }
 
     @Override

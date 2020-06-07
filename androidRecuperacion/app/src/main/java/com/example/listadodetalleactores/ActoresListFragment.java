@@ -33,6 +33,8 @@ public class ActoresListFragment extends Fragment {
     private List<Actores> listaActores = new ArrayList<>();
     Context ctx;
     private ActoresService actoresService;
+    private IActoresListener actoresListener;
+    RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -75,7 +77,7 @@ public class ActoresListFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             listaActores = new ArrayList<>();
-            myActoresListRecyclerViewAdapter =new MyActoresListRecyclerViewAdapter(listaActores, ctx);
+            myActoresListRecyclerViewAdapter =new MyActoresListRecyclerViewAdapter(listaActores, ctx, actoresListener);
             recyclerView.setAdapter(myActoresListRecyclerViewAdapter);
             actoresService = ServiceGenerateActores.createService(ActoresService.class);
             new funcionAsinkTask();
